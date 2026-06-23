@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>TotK Recipes — Cooking by Effect</title>
+<meta name="theme-color" content="#0c120f"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="TotK Recipes"/>
+<link rel="manifest" href="../manifest.webmanifest"/>
+<link rel="apple-touch-icon" href="../apple-touch-icon.png"/>
+<link rel="icon" href="../favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0c120f;--panel:#141d18;--panel2:#1a2620;--border:#2b3a33;--text:#e9efe6;--muted:#92a89c;--zonai:#49d6c2;--zonai-dim:#2c8f82;--gold:#e2b357;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:
+    radial-gradient(1000px 460px at 50% -10%, rgba(73,214,194,.1) 0%, transparent 60%),var(--bg);
+    color:var(--text);font-family:'Hanken Grotesk',-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:5;background:rgba(16,23,19,.92);border-bottom:1px solid var(--border);padding:15px 20px;backdrop-filter:blur(10px)}
+  .h1{font-family:'Cinzel',serif;font-size:20px;font-weight:600;letter-spacing:.01em} .h1 .sub{font-size:13px;color:var(--muted);font-weight:400;margin-left:10px;font-family:'Hanken Grotesk',sans-serif}
+  .controls{max-width:1150px;margin:12px auto 0;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  #search{flex:1;min-width:200px;padding:10px 13px;background:#0d1410;border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:14px;font-family:inherit}
+  #search:focus{outline:none;border-color:var(--zonai-dim)}
+  .a{color:var(--zonai);text-decoration:none;font-size:13px;font-weight:600}
+  main{max-width:1150px;margin:18px auto 70px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:16px;align-items:start}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:14px;overflow:hidden;border-top:3px solid var(--c);transition:border-color .15s,box-shadow .15s}
+  .card:hover{box-shadow:0 10px 30px -12px color-mix(in srgb,var(--c) 50%,transparent)}
+  .ch{padding:14px 16px 10px}
+  .ctitle{font-family:'Cinzel',serif;font-size:18px;font-weight:600;display:flex;align-items:center;gap:9px}
+  .swatch{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 22%,transparent),0 0 10px color-mix(in srgb,var(--c) 60%,transparent)}
+  .tagline{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .desc{font-size:13px;line-height:1.55;padding:0 16px 6px;color:#cad6cd}
+  .sec{padding:8px 16px}
+  .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:6px;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:#0d1410;border:1px solid var(--border);border-radius:18px;padding:3px 10px 3px 4px;font-size:12px;color:var(--text);cursor:pointer;user-select:none;font-weight:500;transition:border-color .12s,background .12s}
+  .chip:hover{border-color:var(--zonai-dim);background:rgba(73,214,194,.07)}
+  .chip img{width:18px;height:18px;object-fit:contain}
+  .chip .dot{width:15px;height:15px;border-radius:50%;background:rgba(160,123,247,.3);display:inline-flex;align-items:center;justify-content:center;font-size:9px}
+  .elixir .chip .dot{background:rgba(226,179,87,.3)}
+  .best{margin:7px 16px 4px;background:rgba(73,214,194,.08);border:1px solid var(--zonai-dim);border-radius:9px;padding:9px 12px;font-size:13px;line-height:1.45}
+  .best b{color:var(--zonai)}
+  .tip{font-size:12.5px;color:var(--muted);padding:7px 16px 15px;line-height:1.5}
+  .note{font-size:11px;color:var(--muted);padding:0 16px 10px;font-style:italic}
+  .empty{color:var(--muted);padding:30px}
+  .cookhow{max-width:1150px;margin:16px auto 0;padding:16px 18px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:14px}
+  .cookhow h3{margin:0;font-family:'Cinzel',serif;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .cookhow .tg{margin-left:auto;background:#0d1410;border:1px solid var(--border);color:var(--muted);border-radius:7px;padding:4px 11px;font-size:12px;cursor:pointer;font-family:inherit}
+  .cookhow .tg:hover{border-color:var(--zonai-dim);color:var(--zonai)}
+  .cookhow .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px}
+  @media(max-width:680px){.cookhow .cols{grid-template-columns:1fr}}
+  .cookhow ol,.cookhow ul{margin:6px 0 0;padding-left:18px;font-size:13px;line-height:1.55;color:#cad6cd}
+  .cookhow li{margin-bottom:6px} .cookhow b{color:var(--text)}
+  .cookhow .sub2{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);font-weight:600}
+  .cookhow.collapsed .cols{display:none}
+  /* modal */
+  .modal{position:fixed;inset:0;background:rgba(4,9,7,.72);display:none;align-items:center;justify-content:center;z-index:50;padding:18px;backdrop-filter:blur(3px)}
+  .modal.show{display:flex}
+  .sheet{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:16px;max-width:460px;width:100%;padding:24px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.6);border-top:4px solid var(--c)}
+  .sheet .close{position:absolute;top:12px;right:15px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+  .sheet .close:hover{color:var(--text)}
+  .mhead{display:flex;gap:15px;align-items:center}
+  .mimg{flex:none;width:76px;height:76px;border-radius:14px;background:radial-gradient(circle at 50% 35%,#2a3a33,#141c18);display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid var(--border)}
+  .mimg img{width:64px;height:64px;object-fit:contain}
+  .mtitle{font-family:'Cinzel',serif;font-size:21px;font-weight:600}
+  .mgrant{display:inline-flex;align-items:center;gap:7px;margin-top:6px;font-size:13px;font-weight:600;color:var(--c)}
+  .mgrant .sw{width:11px;height:11px;border-radius:50%;background:var(--c)}
+  .mrow{margin-top:16px} .mlabel{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px;font-weight:600}
+  .mdesc{font-size:13.5px;line-height:1.55;color:#cad6cd}
+  .mbest{background:rgba(73,214,194,.08);border:1px solid var(--zonai-dim);border-radius:9px;padding:9px 12px;font-size:13px;line-height:1.45}.mbest b{color:var(--zonai)}
+  .mhow{font-size:13.5px;line-height:1.55}
+  .kv{display:flex;gap:18px;margin-top:15px;flex-wrap:wrap}
+  .kv .k{font-size:11px;color:var(--muted)} .kv .v{font-size:14px;font-weight:600}
+  .wlink{display:inline-block;margin-top:16px;font-size:12px;color:var(--muted)}
+  .wlink a{color:var(--zonai)}
+</style></head>
+<body>
+<header>
+  <div class="h1">TotK Recipes <span class="sub">Cooking by effect — 15 effects</span> &nbsp; <a class="a" href="../index.html">← Home</a></div>
+  <div class="controls">
+    <input id="search" placeholder="Search an effect or ingredient (e.g. 'cold', 'Hydromelon', 'gloom')..."/>
+  </div>
+</header>
+<section class="cookhow" id="cookhow">
+  <h3>🍳 How to cook food &amp; elixirs <button class="tg" id="cookTg">Hide</button></h3>
+  <div class="cols">
+    <div><div class="sub2">Steps</div><ol>
+      <li>Stand next to a <b>lit cooking pot</b> (stables, villages, enemy camps — or light your own with wood + any flame).</li>
+      <li>Open inventory → <b>Materials</b>, highlight an item and choose <b>Hold</b>. Add up to <b>5</b> ingredients.</li>
+      <li>Back out of the menu; near the pot press <b>Cook</b> to toss them in, then collect the dish or elixir.</li>
+    </ol></div>
+    <div><div class="sub2">Rules</div><ul>
+      <li><b>Food:</b> use ingredients that share one effect — more or higher-tier = stronger / longer.</li>
+      <li><b>Elixir:</b> 1+ <b>critter</b> (bug, frog, lizard) + 1+ <b>monster part</b>. The critter sets the effect.</li>
+      <li>Don't mix <b>two different effects</b> — they cancel out (plain or Dubious result).</li>
+      <li>Don't mix <b>food + monster parts</b> → Dubious Food. Monster parts only belong with critters, for elixirs.</li>
+      <li>Add a <b>Monster Extract</b> to gamble level/duration; <b>Dragon parts / Star Fragments</b> greatly extend duration.</li>
+    </ul></div>
+  </div>
+</section>
+<main id="grid"></main>
+<div class="modal" id="modal"><div class="sheet" id="sheet">
+  <button class="close" id="mClose">&times;</button>
+  <div class="mhead"><div class="mimg" id="mImg"></div>
+    <div><div class="mtitle" id="mTitle"></div><div class="mgrant" id="mGrant"></div></div></div>
+  <div class="kv"><div><div class="v" id="mKind"></div><div class="k">ingredient type</div></div></div>
+  <div class="mrow"><div class="mlabel">What it does</div><div class="mdesc" id="mDesc"></div></div>
+  <div class="mrow"><div class="mlabel">How to cook</div><div class="mhow" id="mHow"></div></div>
+  <div class="mrow"><div class="mlabel">Best combo</div><div class="mbest" id="mBest"></div></div>
+  <div class="mrow" id="mOtherRow"><div class="mlabel">Other ingredients for this effect</div><div class="chips" id="mOther"></div></div>
+  <div class="wlink" id="mWlink"></div>
+</div></div>
+<script>
+const D = {"effects": [{"effect": "Hearty", "tagline": "Restores all hearts + temporary yellow hearts", "color": "#e8634a", "description": "Recovers all of Link's hearts and grants extra temporary yellow hearts above the max. Yellow-heart count scales with how many Hearty ingredients you use; no timer \u2014 the bonus hearts persist until lost.", "foodIngredients": ["Hearty Truffle", "Big Hearty Truffle", "Hearty Radish", "Big Hearty Radish", "Hearty Durian", "Hearty Salmon", "Hearty Bass", "Hearty Blueshell Snail"], "elixirCritters": ["Hearty Lizard"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Big Hearty Radish = full hearts + the 25-yellow-heart cap.", "tip": "Use before tough fights or long climbs/dives for a survivability buffer.", "wiki": "https://zelda.fandom.com/wiki/Hearty"}, {"effect": "Energizing", "tagline": "Instantly restores the green stamina wheel", "color": "#8ed14a", "description": "Refills Link's depleted (green) stamina gauge immediately. Amount restored scales with the potency of the ingredients used.", "foodIngredients": ["Stamella Shroom", "Staminoka Bass", "Bright-Eyed Crab", "Courser Bee Honey"], "elixirCritters": ["Restless Cricket", "Energetic Rhino Beetle"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Staminoka Bass for a near-full stamina refill.", "tip": "Eat mid-climb or mid-swim to instantly top off the green wheel and keep going.", "wiki": "https://zelda.fandom.com/wiki/Energizing"}, {"effect": "Enduring", "tagline": "Overfills stamina with extra (yellow) wheels", "color": "#f0c419", "description": "Refills stamina and adds temporary bonus stamina that overfills beyond the maximum. Overfill scales with the number of Endura ingredients used.", "foodIngredients": ["Endura Carrot", "Endura Shroom"], "elixirCritters": ["Tireless Frog"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Endura Carrot for the max overfilled bonus stamina (~2 extra wheels).", "tip": "Bonus stamina is spent before your real stamina \u2014 perfect for marathon climbs.", "wiki": "https://zelda.fandom.com/wiki/Enduring"}, {"effect": "Sneaky (Stealthy)", "tagline": "Move quietly, undetected by enemies", "color": "#7b5ea7", "description": "Lowers the noise Link makes so enemies and animals are less likely to notice him. Level and duration scale with the ingredients used.", "foodIngredients": ["Silent Princess", "Blue Nightshade", "Silent Shroom", "Sneaky River Snail", "Stealthfin Trout"], "elixirCritters": ["Sunset Firefly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "Sneaky Elixir (Sunset Fireflies + monster part), or dishes with Silent Princess for long duration.", "tip": "Pair with the Stealth armor set for sneaking past Lynels and hunting animals.", "wiki": "https://zelda.fandom.com/wiki/Sneaky"}, {"effect": "Hasty", "tagline": "Increases running/swimming speed", "color": "#3aa6b0", "description": "Boosts Link's running, swimming, and climb-walk speed. Level and duration scale with the ingredients used.", "foodIngredients": ["Swift Carrot", "Swift Violet", "Fleet-Lotus Seeds"], "elixirCritters": ["Hot-Footed Frog", "Hightail Lizard"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Swift Violet for a high-level, long-duration speed boost.", "tip": "Stack high-tier Hasty ingredients to reach Hasty Lv. 3 for exploration or escaping.", "wiki": "https://zelda.fandom.com/wiki/Hasty"}, {"effect": "Sticky (Slip Resistance)", "tagline": "Climb wet/rainy surfaces without slipping", "color": "#5a8f3a", "description": "Lets Link climb wet and rain-slicked surfaces without sliding. Duration scales with the number of Sticky ingredients used.", "foodIngredients": ["Sticky Lizard", "Sticky Frog"], "elixirCritters": ["Sticky Lizard", "Sticky Frog"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "Sticky Elixir: 4x Sticky Frog + 1 monster part for max duration.", "tip": "A lifesaver for climbing in the rain before you have stamina to brute-force it.", "wiki": "https://zelda.fandom.com/wiki/Sticky"}, {"effect": "Mighty (Attack Up)", "tagline": "Temporarily increases attack power", "color": "#e05a2b", "description": "Raises the damage Link deals with weapons. Level and duration scale with the ingredients used.", "foodIngredients": ["Mighty Bananas", "Mighty Thistle", "Razorshroom", "Razorclaw Crab", "Mighty Carp", "Mighty Porgy"], "elixirCritters": ["Bladed Rhino Beetle"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Mighty Bananas for a high-level, long-duration attack boost.", "tip": "Stack with the Barbarian armor set bonus for huge burst damage on bosses and Lynels.", "wiki": "https://zelda.fandom.com/wiki/Mighty"}, {"effect": "Tough (Defense Up)", "tagline": "Temporarily increases defense", "color": "#3a6ea5", "description": "Raises Link's defense so he takes less damage. Level and duration scale with the ingredients used.", "foodIngredients": ["Ironshroom", "Armoranth", "Fortified Pumpkin", "Ironshell Crab", "Armored Carp", "Armored Porgy"], "elixirCritters": ["Rugged Rhino Beetle"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Fortified Pumpkin for strong, long-lasting Defense Up.", "tip": "Use in Gloom-heavy or Lynel fights to survive while learning patterns.", "wiki": "https://zelda.fandom.com/wiki/Tough"}, {"effect": "Spicy (Cold Resistance)", "tagline": "Warms Link to resist cold", "color": "#e88a2b", "description": "Protects against cold-weather damage in snowy and high-altitude regions. Two warmth tiers; level and duration scale with ingredients.", "foodIngredients": ["Spicy Pepper", "Warm Safflina", "Sizzlefin Trout", "Sunshroom"], "elixirCritters": ["Warm Darner", "Summerwing Butterfly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Spicy Pepper (Spicy Saut\u00e9ed Peppers) for high-level, long-duration warmth.", "tip": "For the coldest areas (Hebra, sky islands) use Sizzlefin Trout or stack peppers for Lv. 2.", "wiki": "https://zelda.fandom.com/wiki/Spicy"}, {"effect": "Chilly (Heat Resistance)", "tagline": "Cools Link to resist ambient heat", "color": "#4ab0c4", "description": "Protects against ambient heat in hot regions like Gerudo Desert. Does NOT block flame/burning \u2014 only ambient heat. Level and duration scale with ingredients.", "foodIngredients": ["Hydromelon", "Cool Safflina", "Chillfin Trout", "Chillshroom"], "elixirCritters": ["Cold Darner", "Winterwing Butterfly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Hydromelon for long-duration heat resistance.", "tip": "Needed for the daytime Gerudo Desert trek to Gerudo Town.", "wiki": "https://zelda.fandom.com/wiki/Chilly"}, {"effect": "Electro (Shock Resistance)", "tagline": "Reduces electric damage & disarming", "color": "#e8c84a", "description": "Increases resistance to electricity so shocks deal less damage and are less likely to make Link drop his weapon. Level and duration scale with ingredients.", "foodIngredients": ["Voltfruit", "Electric Safflina", "Voltfin Trout", "Zapshroom"], "elixirCritters": ["Electric Darner", "Thunderwing Butterfly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "5x Voltfruit for high-level, long-duration shock resistance.", "tip": "Use against Electric Wizzrobes, Shock Lizalfos, and thunderstorms to avoid being stunned.", "wiki": "https://zelda.fandom.com/wiki/Electro"}, {"effect": "Fireproof", "tagline": "Stops Link catching fire (elixir only)", "color": "#d13a2b", "description": "Stops Link bursting into flames near lava and Death Mountain. ELIXIR ONLY \u2014 cooking the ingredients over flame fails the dish, so there are no Fireproof foods.", "foodIngredients": [], "elixirCritters": ["Fireproof Lizard", "Smotherwing Butterfly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "4x Smotherwing Butterfly + 1 monster part for a long-duration Fireproof Elixir.", "tip": "Catch the critters around Eldin/Death Mountain; stock elixirs before the volcano region.", "wiki": "https://zelda.fandom.com/wiki/Fireproof"}, {"effect": "Bright (Glow)", "tagline": "Makes Link emit light in the dark", "color": "#f0e04a", "description": "Causes Link to glow, lighting dark areas like the Depths; the light can briefly weaken Gloom Hands. Duration scales with glowing ingredients used.", "foodIngredients": ["Brightcap", "Glowing Cave Fish"], "elixirCritters": ["Deep Firefly"], "monsterPartNote": "Elixirs also need a monster part (horn, fang, guts, etc.).", "bestRecipe": "Bright Elixir: 4x Deep Firefly + 1 monster part, or a dish with several Brightcaps.", "tip": "Great for the Depths without burning Brightbloom Seeds; the light also helps vs Gloom Hands.", "wiki": "https://zelda.fandom.com/wiki/Bright"}, {"effect": "Sunny (Gloom Recovery)", "tagline": "Restores Gloom-locked hearts (TotK-new)", "color": "#f5a623", "description": "Recovers hearts locked by Gloom damage in addition to normal healing \u2014 something regular food cannot do. New to TotK, made with Sundelion from the Sky Islands.", "foodIngredients": ["Sundelion"], "elixirCritters": [], "monsterPartNote": "", "bestRecipe": "Sundelion + Hearty ingredient (e.g. Hearty Radish) to clear Gloom AND add yellow hearts.", "tip": "Cook before diving into the Depths; only Sunny food restores Gloom-locked hearts on the spot.", "wiki": "https://zelda.fandom.com/wiki/Sunny"}, {"effect": "Restorative / Neutral", "tagline": "Restores hearts only, no buff", "color": "#f24a5a", "description": "Plain food that replenishes red hearts with no timed effect. Heart recovery scales with the ingredients used; cooking 5 ingredients adds a bonus heart.", "foodIngredients": ["Apple", "Hylian Tomato", "Hyrule Herb", "Tabantha Wheat", "Raw Meat", "Hyrule Bass", "Bird Egg", "Fresh Milk", "Hylian Rice"], "elixirCritters": [], "monsterPartNote": "", "bestRecipe": "Any meat + rice/veggie in batches of 5 for cheap, large heart recovery.", "tip": "Always cook in fives \u2014 the 5-ingredient bonus heart makes batches more efficient.", "wiki": "https://zelda.fandom.com/wiki/Restorative"}], "icons": {"Apple": "Item_Fruit_A", "Armoranth": "Item_PlantGet_H", "Armored Carp": "Item_FishGet_H", "Armored Porgy": "Item_FishGet_G", "Big Hearty Radish": "Item_PlantGet_C", "Big Hearty Truffle": "Item_Mushroom_N", "Bird Egg": "Item_Material_04", "Blue Nightshade": "Item_PlantGet_I", "Bright-Eyed Crab": "Item_InsectGet_Z", "Brightcap": "Item_MushroomGet_K", "Chillfin Trout": "Item_FishGet_C", "Chillshroom": "Item_Mushroom_B", "Cool Safflina": "Item_PlantGet_E", "Electric Safflina": "Item_PlantGet_L", "Endura Carrot": "Item_PlantGet_Q", "Endura Shroom": "Item_Mushroom_O", "Fleet-Lotus Seeds": "Item_Fruit_E", "Fortified Pumpkin": "Item_Fruit_J", "Fresh Milk": "Item_Material_05", "Glowing Cave Fish": "Item_FishGet_AC", "Hearty Bass": "Item_FishGet_B", "Hearty Radish": "Item_PlantGet_B", "Hearty Salmon": "Item_FishGet_I", "Hearty Truffle": "Item_Mushroom_F", "Hydromelon": "Item_Fruit_F", "Hylian Rice": "Item_Material_03", "Hylian Tomato": "Item_Fruit_M", "Hyrule Bass": "Item_FishGet_A", "Hyrule Herb": "Item_PlantGet_A", "Ironshell Crab": "Item_InsectGet_O", "Ironshroom": "Item_Mushroom_M", "Mighty Bananas": "Item_Fruit_H", "Mighty Carp": "Item_FishGet_E", "Mighty Porgy": "Item_FishGet_F", "Mighty Thistle": "Item_PlantGet_G", "Raw Meat": "Item_Meat_01", "Razorclaw Crab": "Item_InsectGet_K", "Razorshroom": "Item_Mushroom_L", "Silent Princess": "Item_PlantGet_J", "Silent Shroom": "Item_Mushroom_J", "Sizzlefin Trout": "Item_FishGet_J", "Sneaky River Snail": "Item_FishGet_M", "Spicy Pepper": "Item_Fruit_I", "Stamella Shroom": "Item_Mushroom_A", "Staminoka Bass": "Item_FishGet_L", "Stealthfin Trout": "Item_FishGet_X", "Sundelion": "Item_PlantGet_R", "Sunshroom": "Item_Mushroom_C", "Swift Carrot": "Item_PlantGet_M", "Swift Violet": "Item_PlantGet_O", "Tabantha Wheat": "Item_Material_07", "Voltfin Trout": "Item_FishGet_D", "Voltfruit": "Item_Fruit_C", "Warm Safflina": "Item_PlantGet_F", "Zapshroom": "Item_Mushroom_H"}, "wikiBase": "https://zelda.fandom.com/wiki/"};
+const EFFECTS=D.effects, ICONS=D.icons, WB=D.wikiBase;
+function wikiUrl(n){return WB+encodeURIComponent(n.replace(/ /g,'_'));}
+// ingredient -> effect index + kind
+const ING={};
+EFFECTS.forEach((e,i)=>{
+  e.foodIngredients.forEach(n=>{ING[n]=ING[n]||{ei:i};ING[n].food=true;});
+  e.elixirCritters.forEach(n=>{ING[n]=ING[n]||{ei:i};ING[n].elixir=true;});
+});
+function chip(name, kind){
+  const id=ICONS[name];
+  const ico = id ? '<img src="icons/'+id+'.png" loading="lazy" alt="">' : '<span class="dot">'+(kind==='elixir'?'🐛':'🍎')+'</span>';
+  return '<span class="chip" data-ing="'+name.replace(/"/g,'&quot;')+'">'+ico+name+'</span>';
+}
+function matches(e,q){
+  if(!q)return true;
+  const hay=(e.effect+' '+e.tagline+' '+e.description+' '+e.foodIngredients.join(' ')+' '+e.elixirCritters.join(' ')).toLowerCase();
+  return hay.includes(q);
+}
+function render(q){
+  const grid=document.getElementById('grid'); grid.innerHTML=''; let shown=0;
+  for(const e of EFFECTS){
+    if(!matches(e,q))continue; shown++;
+    const card=document.createElement('div'); card.className='card'; card.style.setProperty('--c',e.color);
+    let h='<div class="ch"><div class="ctitle"><span class="swatch"></span>'+e.effect+'</div><div class="tagline">'+e.tagline+'</div></div>'+
+      '<div class="desc">'+e.description+'</div>';
+    if(e.foodIngredients.length) h+='<div class="sec"><div class="lbl">🍳 Food ingredients</div><div class="chips">'+e.foodIngredients.map(n=>chip(n,'food')).join('')+'</div></div>';
+    if(e.elixirCritters.length){h+='<div class="sec elixir"><div class="lbl">⚗️ Elixir (critter + monster part)</div><div class="chips">'+e.elixirCritters.map(n=>chip(n,'elixir')).join('')+'</div></div>';
+      if(e.monsterPartNote)h+='<div class="note">'+e.monsterPartNote+'</div>';}
+    if(e.bestRecipe)h+='<div class="best"><b>Best combo:</b> '+e.bestRecipe+'</div>';
+    if(e.tip)h+='<div class="tip">💡 '+e.tip+'</div>';
+    card.innerHTML=h; grid.appendChild(card);
+  }
+  if(!shown)grid.innerHTML='<div class="empty">No effect or ingredient matches that search.</div>';
+}
+// ---- ingredient dialog ----
+const modal=document.getElementById('modal'), sheet=document.getElementById('sheet');
+function openIngredient(name){
+  const info=ING[name]; if(!info)return;
+  const e=EFFECTS[info.ei];
+  sheet.style.setProperty('--c',e.color);
+  const id=ICONS[name];
+  document.getElementById('mImg').innerHTML = id?'<img src="icons/'+id+'.png" alt="">':(info.elixir&&!info.food?'🐛':'🍎');
+  document.getElementById('mTitle').textContent=name;
+  document.getElementById('mGrant').innerHTML='<span class="sw"></span>Grants '+e.effect;
+  document.getElementById('mKind').textContent = info.food&&info.elixir?'Food + elixir critter':(info.elixir?'Elixir critter':'Food');
+  document.getElementById('mDesc').textContent=e.description;
+  // how to cook
+  let how='';
+  if(info.food) how+='Cook up to 5 (alone or with other '+e.effect.split(' ')[0]+' ingredients) in a pot to make '+e.effect.split(' ')[0]+' food. More or higher-tier ingredients = stronger / longer effect.';
+  if(info.elixir) how+=(how?'<br><br>':'')+'For an elixir: combine this critter with a monster part (horn, fang, guts, etc.). Add more critters to extend the duration.';
+  document.getElementById('mHow').innerHTML=how;
+  document.getElementById('mBest').innerHTML='<b>'+e.effect.split(' ')[0]+':</b> '+e.bestRecipe;
+  // other ingredients of this effect
+  const others=[...e.foodIngredients,...e.elixirCritters].filter((n,i,a)=>a.indexOf(n)===i && n!==name);
+  const orow=document.getElementById('mOtherRow');
+  if(others.length){orow.style.display='';document.getElementById('mOther').innerHTML=others.map(n=>chip(n, e.elixirCritters.includes(n)&&!e.foodIngredients.includes(n)?'elixir':'food')).join('');}
+  else orow.style.display='none';
+  document.getElementById('mWlink').innerHTML='<a href="'+wikiUrl(name)+'" target="_blank" rel="noopener">View "'+name+'" on Zelda Wiki ↗</a>';
+  modal.classList.add('show');
+}
+document.addEventListener('click',e=>{const c=e.target.closest('.chip');if(c&&c.dataset.ing){openIngredient(c.dataset.ing);}});
+document.getElementById('mClose').onclick=()=>modal.classList.remove('show');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show');});
+document.getElementById('cookTg').onclick=function(){var c=document.getElementById('cookhow');c.classList.toggle('collapsed');this.textContent=c.classList.contains('collapsed')?'Show':'Hide';};
+// init
+render('');
+document.getElementById('search').addEventListener('input',e=>render(e.target.value.toLowerCase().trim()));
+</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('../sw.js',{scope:'../'}).catch(()=>{}));}</script>
+</body></html>
